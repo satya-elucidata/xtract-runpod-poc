@@ -12,17 +12,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip install --no-cache-dir --upgrade pip
+
+RUN pip uninstall -y numpy || true
+
+RUN pip install --no-cache-dir numpy
+
 RUN pip install --no-cache-dir uv
 
-RUN uv pip install --system numpy
-
-RUN uv pip install --system pillow==10.0.0 transformers huggingface_hub
-
-RUN uv pip install --system pdftext
-
-RUN uv pip install --system surya-ocr
-
-RUN uv pip install --system runpod
+RUN uv pip install --system --reinstall pillow transformers huggingface_hub pdftext surya-ocr runpod
 
 COPY handler.py /
 
