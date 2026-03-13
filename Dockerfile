@@ -14,13 +14,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --no-cache-dir uv
 
-RUN uv pip install --system "numpy<2.0.0"
+RUN uv pip install --system numpy
 
-RUN uv pip install --system pillow==10.0.0 transformers==4.36.2 huggingface_hub
+RUN uv pip install --system pillow==10.0.0 transformers huggingface_hub
 
 RUN uv pip install --system pdftext
 
-RUN uv pip install --system surya-ocr==0.4.0
+RUN uv pip install --system surya-ocr
 
 RUN uv pip install --system runpod
 
