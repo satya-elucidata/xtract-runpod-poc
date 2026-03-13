@@ -1,0 +1,7 @@
+{
+    "input": {
+        "file_url": "https://example.com/document.pdf",
+        "languages": ["en"],
+        "task": "ocr"
+    }
+}

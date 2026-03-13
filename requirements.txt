@@ -1,0 +1,17 @@
+runpod
+torch>=2.0.0
+torchvision>=0.15.0
+surya-ocr
+pdftext
+pillow
+requests
+huggingface_hub
+timm
+transformers
+scikit-learn
+scipy
+numpy
+opencv-python-headless
+pypdfium2
+pdf2image
+ftfy
