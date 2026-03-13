@@ -78,7 +78,7 @@ def load_input_files(input_data: Dict[str, Any]) -> List[Image.Image]:
             import pdftext.extraction as pdf_ext
 
             filepath = download_file(file_url)
-            pages = pdf_ext.get_pages(filepath)
+            pages = pdf_ext.get_pages(filepath, page_range="all")
             for page_img in pages:
                 images.append(page_img)
             filepath.unlink(missing_ok=True)
