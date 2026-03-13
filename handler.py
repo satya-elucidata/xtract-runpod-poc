@@ -75,12 +75,20 @@ def load_input_files(input_data: Dict[str, Any]) -> List[Image.Image]:
 
     if file_url:
         if file_url.lower().endswith(".pdf"):
-            import pdftext.extraction as pdf_ext
+            import pypdfium2
 
             filepath = download_file(file_url)
-            pages = pdf_ext.get_pages(filepath, page_range="all")
-            for page_img in pages:
-                images.append(page_img)
+            pdf = pypdfium2.PdfDocument(filepath)
+            for page_idx in range(len(pdf)):
+                page = pdf[page_idx]
+                pil_image = page.render(
+                    scale=2.0,
+                    rotation=0,
+                ).to_pil()
+                if pil_image.mode != "RGB":
+                    pil_image = pil_image.convert("RGB")
+                images.append(pil_image)
+            pdf.close()
             filepath.unlink(missing_ok=True)
         else:
             filepath = download_file(file_url)

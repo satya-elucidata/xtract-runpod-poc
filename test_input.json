@@ -1,7 +1,6 @@
 {
-    "input": {
-        "file_url": "https://example.com/document.pdf",
-        "languages": ["en"],
-        "task": "ocr"
-    }
+  "input": {
+    "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "languages": ["en"]
+  }
 }
