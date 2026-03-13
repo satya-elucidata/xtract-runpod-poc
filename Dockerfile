@@ -1,9 +1,8 @@
-FROM python:3.11-slim
+FROM pytorch/pytorch:2.1.2-cuda12.1-cudnn8-runtime
 
 WORKDIR /
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
     libgl1 \
     libglib2.0-0 \
     libsm6 \
@@ -12,9 +11,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir torch==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir --upgrade pip
 
-RUN pip install --no-cache-dir surya-ocr pdftext runpod
+RUN pip install --no-cache-dir pillow==10.0.0 transformers huggingface_hub
+
+RUN pip install --no-cache-dir pdftext
+
+RUN pip install --no-cache-dir surya-ocr
+
+RUN pip install --no-cache-dir runpod
 
 COPY handler.py /
 
