@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir pillow==10.0.0 transformers==4.36.2 huggingface_h
 
 RUN pip install --no-cache-dir pdftext
 
-RUN pip install --no-cache-dir surya-ocr
+RUN pip install --no-cache-dir surya-ocr==0.4.0
 
 RUN pip install --no-cache-dir runpod
 
