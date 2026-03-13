@@ -9,7 +9,6 @@ from typing import Union, List, Dict, Any, Optional
 import runpod
 import torch
 from PIL import Image
-from surya.ocr import run_ocr
 from surya.detection import DetectionPredictor
 from surya.recognition import RecognitionPredictor
 from surya.layout import LayoutPredictor
@@ -74,9 +73,7 @@ def process_ocr(
     if languages is None:
         languages = ["en"]
 
-    ocr_results = run_ocr(
-        images, languages=languages, det_predictor=detector, rec_predictor=recognizer
-    )
+    ocr_results = recognizer(images)
 
     results = []
     for idx, result in enumerate(ocr_results):
