@@ -9,19 +9,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxext6 \
     libxrender1 \
     libgomp1 \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir uv
 
-RUN pip install --no-cache-dir --force-reinstall "numpy<2.0.0"
+RUN uv pip install --system "numpy<2.0.0"
 
-RUN pip install --no-cache-dir pillow==10.0.0 transformers==4.36.2 huggingface_hub
+RUN uv pip install --system pillow==10.0.0 transformers==4.36.2 huggingface_hub
 
-RUN pip install --no-cache-dir pdftext
+RUN uv pip install --system pdftext
 
-RUN pip install --no-cache-dir surya-ocr==0.4.0
+RUN uv pip install --system surya-ocr==0.4.0
 
-RUN pip install --no-cache-dir runpod
+RUN uv pip install --system runpod
 
 COPY handler.py /
 
