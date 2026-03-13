@@ -75,11 +75,12 @@ def load_input_files(input_data: Dict[str, Any]) -> List[Image.Image]:
 
     if file_url:
         if file_url.lower().endswith(".pdf"):
-            import pdftext
+            import pdftext.extraction as pdf_ext
 
             filepath = download_file(file_url)
-            pdf_images = pdftext.pdf_to_images(filepath, dpi=150)
-            images.extend(pdf_images)
+            pages = pdf_ext.get_pages(filepath)
+            for page_img in pages:
+                images.append(page_img)
             filepath.unlink(missing_ok=True)
         else:
             filepath = download_file(file_url)
