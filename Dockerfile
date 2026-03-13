@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --no-cache-dir --upgrade pip
 
+RUN pip install --no-cache-dir "numpy<2.0.0"
+
 RUN pip install --no-cache-dir pillow==10.0.0 transformers==4.36.2 huggingface_hub
 
 RUN pip install --no-cache-dir pdftext
