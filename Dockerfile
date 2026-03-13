@@ -14,13 +14,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --no-cache-dir --upgrade pip
 
-RUN pip uninstall -y numpy || true
-
 RUN pip install --no-cache-dir numpy
 
-RUN pip install --no-cache-dir uv
+RUN pip install --no-cache-dir pillow transformers huggingface_hub
 
-RUN uv pip install --system --reinstall pillow transformers huggingface_hub pdftext surya-ocr runpod
+RUN pip install --no-cache-dir pdftext
+
+RUN pip install --no-cache-dir surya-ocr==0.4.0
+
+RUN pip install --no-cache-dir runpod
 
 COPY handler.py /
 
