@@ -12,17 +12,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir uv
 
-RUN pip install --no-cache-dir pillow transformers huggingface_hub
+COPY <<EOF /requirements.txt
+numpy==1.26.4
+pillow
+transformers
+huggingface_hub
+pdftext
+surya-ocr==0.4.0
+runpod
+pypdfium2
+EOF
 
-RUN pip install --no-cache-dir pdftext
-
-RUN pip install --no-cache-dir surya-ocr==0.4.0
-
-RUN pip install --no-cache-dir runpod
-
-RUN pip install --no-cache-dir --force-reinstall numpy==1.26.4
+RUN uv pip install --system -r requirements.txt
 
 COPY handler.py /
 
