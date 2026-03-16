@@ -14,8 +14,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --no-cache-dir --upgrade pip
 
-RUN pip install --no-cache-dir numpy
-
 RUN pip install --no-cache-dir pillow transformers huggingface_hub
 
 RUN pip install --no-cache-dir pdftext
@@ -23,6 +21,8 @@ RUN pip install --no-cache-dir pdftext
 RUN pip install --no-cache-dir surya-ocr==0.4.0
 
 RUN pip install --no-cache-dir runpod
+
+RUN pip install --no-cache-dir --force-reinstall numpy==1.26.4
 
 COPY handler.py /
 
